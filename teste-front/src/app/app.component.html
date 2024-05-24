@@ -1,0 +1,44 @@
+<main>
+  <div class="cabecalho">
+    <img src="/assets/logo.png" alt="Logo Embras">
+  </div>
+  <div class="titulo">
+    <h1>Listagem de usuários</h1>
+    <p-button label="Novo Usuário" icon="pi pi-plus-circle" size="small" id="btn-novo" (click)="showFormUser()" />
+    <p-dialog header="Novo Usuário" [(visible)]="visible" [modal]="true" styleClass="dialog-header">
+      <form [formGroup]="formUser" novalidate>
+        <div class="input-group">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" name="name" formControlName="name" pInputText>
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input id="email" type="text" name="email" formControlName="email" pInputText>
+        </div>
+      </form>
+      <ng-template pTemplate="footer">
+        <p-button label="Cancelar" icon="pi pi-times" size="small" [outlined]="true" severity="secondary"
+          (click)="visible = false" />
+        <p-button label="Confirmar" icon="pi pi-check" size="small" (click)="onSubmit()" />
+      </ng-template>
+    </p-dialog>
+
+  </div>
+  <p-table [value]="users">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th colspan="2">Email</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td class="td-btn-excluir"><p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger"
+            size="small" class="btn-excluir" (click)="apagarUsuario($event, user.id)" /></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</main>
+<p-confirmDialog />
