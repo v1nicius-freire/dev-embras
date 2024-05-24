@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { Observable } from 'rxjs';
@@ -7,21 +7,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private url_api = 'http://172.16.83.20:4201'
+  private url_api = 'http://localhost:4200/users'
 
   constructor(
     private http: HttpClient
   ) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url_api}/users`)
+    return this.http.get<User[]>(this.url_api)
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.url_api}/users`, user)
+    return this.http.post<User>(this.url_api, user)
   }
 
   deleteUser(id: number) {
-    return this.http.delete(`${this.url_api}/users/${id}`)
+    return this.http.delete(`${this.url_api}/${id}`)
   }
 }
