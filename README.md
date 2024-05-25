@@ -13,7 +13,7 @@
 ```
 ## Como usar
 Para usar esse projeto primeiro você precisa ter intalado o [Docker](https://www.docker.com/).  
-Com o Docker instalado, faça o clone deste repositorio: `git clone `.  
+Com o Docker instalado, faça o clone deste repositorio: `git clone git@github.com:v1nicius-freire/dev-embras.git`.  
 Acesse a pasta **dev-embras**.  
 Crie o arquivo .env com as seguintes variaveis de ambitente:
 ```
