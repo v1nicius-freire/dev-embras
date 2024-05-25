@@ -6,7 +6,7 @@ body {
 }
 
 main {
-  padding: 2rem .5rem;
+  padding: .75rem .5rem;
 
   @media (min-width: 576px) {
     padding: 2rem 2rem;
@@ -45,8 +45,22 @@ main {
   }
 
   @media (max-width: 576px) {
-    button {
-      display: block;
+    flex-wrap: wrap;
+
+    h1 {
+      font-size: 30px;
+      margin: 0 0 1.5rem 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    p-button {
+      width: 100%;
+
+      button {
+        display: block;
+        width: 100%;
+      }
     }
   }
 }
