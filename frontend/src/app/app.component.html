@@ -1,19 +1,27 @@
 <main>
-  <div class="cabecalho">
-    <img src="/assets/logo.png" alt="Logo Embras">
-  </div>
+  <img src="/assets/logo.png" alt="Logo Embras" class="logo">
   <div class="titulo">
-    <h1>Listagem de usuários</h1>
-    <p-button label="Novo Usuário" icon="pi pi-plus-circle" size="small" id="btn-novo" (click)="showFormUser()" />
-    <p-dialog header="Novo Usuário" [(visible)]="visible" [modal]="true" styleClass="dialog-header">
-      <form [formGroup]="formUser" novalidate>
+    <h1>Listagem de Usuários</h1>
+    <p-button label="Novo Usuário" icon="pi pi-plus-circle" size="small" (click)="showFormUser()" />
+    <p-dialog header="Novo Usuário" [(visible)]="visible" [modal]="true"
+      [style]="{ width: '50%', 'min-width': 'fit-content', 'max-width': '600px' }">
+      <ng-template pTemplate="header">
+        <b>Cadastro de Usuário</b>
+      </ng-template>
+      <form #userForm [formGroup]="formUser" novalidate>
         <div class="input-group">
           <label for="nome">Nome</label>
           <input id="nome" type="text" name="name" formControlName="name" pInputText>
+          <span class="invalid-msg"
+            *ngIf="(formUser.get('name')?.touched || submitted) && formUser.get('name')?.errors?.['required']">Nome é
+            obrigatório</span>
         </div>
         <div class="input-group">
           <label for="email">Email</label>
           <input id="email" type="text" name="email" formControlName="email" pInputText>
+          <span class="invalid-msg"
+            *ngIf="(formUser.get('email')?.touched || submitted) && formUser.get('email')?.errors?.['required']">Email é
+            obrigatório</span>
         </div>
       </form>
       <ng-template pTemplate="footer">
@@ -35,10 +43,13 @@
       <tr>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td class="td-btn-excluir"><p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger"
-            size="small" class="btn-excluir" (click)="apagarUsuario($event, user.id)" /></td>
+        <td class="btn-excluir">
+          <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" size="small"
+            (click)="apagarUsuario($event, user.id)" />
+        </td>
       </tr>
     </ng-template>
   </p-table>
 </main>
+<p-toast />
 <p-confirmDialog />
